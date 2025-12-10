@@ -7,7 +7,7 @@ SECRET_KEY = 'replace-this-with-a-secure-secret-in-production'
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*',"https://gyaagl.club/"]
 
 INSTALLED_APPS = [
     'django.contrib.admin',
