@@ -1,0 +1,1275 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Gold Vault Application For Jewellers">
+  <meta name="author" content="Mahendra Luniya, Vighanhrata Gold, AppWelt Pvt. Ltd.">
+  <title>Gold Vault - आपकी सोने की तिजोरी</title>
+
+  <!-- css -->
+  <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" type="text/css">
+  <link href="{% static 'font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" type="text/css" href="{% static 'plugins/cubeportfolio/css/cubeportfolio.min.css' %}">
+  <link href="{% static 'css/nivo-lightbox.css' %}" rel="stylesheet" />
+  <link href="{% static 'css/nivo-lightbox-theme/default/default.css' %}" rel="stylesheet" type="text/css" />
+  <link href="{% static 'css/owl.carousel.css' %}" rel="stylesheet" media="screen" />
+  <link href="{% static 'css/owl.theme.css' %}" rel="stylesheet" media="screen" />
+  <link href="{% static 'css/animate.css' %}" rel="stylesheet" />
+  <link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+  <!-- boxed bg -->
+  <link id="bodybg" href="{% static 'bodybg/bg1.css' %}" rel="stylesheet" type="text/css" />
+  <!-- template skin -->
+  <link id="t-colors" href="{% static 'color/default.css' %}" rel="stylesheet">
+
+  <style>
+  :root{
+    --fv-gold: #b8860b;
+    --fv-gold-2: #d4a81a;
+    --fv-dark: #1b1b1b;
+    --fv-muted: #fbf8f0;
+    --fv-success: #2a9d8f;
+    --fv-error: #d64545;
+    --fv-radius: 12px;
+    --fv-shadow: 0 10px 30px rgba(0,0,0,0.18);
+  }
+
+  /* Bootstrap modal custom (if you have respModal) */
+  #respModal .modal-content {
+    border-radius: var(--fv-radius);
+    overflow: hidden;
+    border: 0;
+    box-shadow: var(--fv-shadow);
+    background: transparent;
+  }
+  #respModal .modal-dialog { max-width:520px; }
+  #respModal .fv-header { padding:14px 16px; display:flex; align-items:center; gap:12px; }
+  #respModal .modal-title { margin:0; font-weight:700; color:#fff; font-size:1.05rem; }
+  #respModal.fv-primary .fv-header { background: linear-gradient(90deg, var(--fv-gold), var(--fv-gold-2)); }
+  #respModal.fv-success .fv-header { background: linear-gradient(90deg, var(--fv-success), #36b79b); }
+  #respModal.fv-error   .fv-header { background: linear-gradient(90deg, var(--fv-error), #ef7b7b); }
+
+  #respModal .modal-body { background: var(--fv-muted); color: var(--fv-dark); padding:16px 18px; border-bottom-left-radius: var(--fv-radius); border-bottom-right-radius: var(--fv-radius); }
+  #respModal .modal-footer { background: #fff; border-top:0; padding:10px 16px; }
+
+  #respModalIcon { width:56px; height:56px; border-radius:10px; display:inline-flex; align-items:center; justify-content:center; flex-shrink:0; box-shadow:0 4px 12px rgba(0,0,0,0.12); }
+  #respModalSvg { width:28px; height:28px; display:block; }
+
+  .fv-tick { stroke-dasharray: 1000; stroke-dashoffset: 1000; transition: stroke-dashoffset 450ms ease-out; }
+  .fv-tick.animate { stroke-dashoffset: 0; }
+
+  /* Fallback modal styling */
+  #fv-fallback-modal { border-radius:12px; overflow:hidden; box-shadow: var(--fv-shadow); max-width:520px; width:90%; }
+  #fv-fallback-header { padding:14px 16px; display:flex; align-items:center; gap:12px; color:#fff; background: linear-gradient(90deg,var(--fv-gold),var(--fv-gold-2)); }
+  #fv-fallback-icon { width:56px; height:56px; border-radius:10px; display:flex; align-items:center; justify-content:center; flex-shrink:0; box-shadow: 0 6px 18px rgba(0,0,0,0.12); background: rgba(255,255,255,0.12); }
+  #fv-fallback-title { font-weight:700; font-size:1rem; color:#fff; }
+  #fv-fallback-body { padding:18px; background: var(--fv-muted); color: var(--fv-dark); font-size:1.05rem; line-height:1.5; white-space:pre-wrap; }
+  #fv-fallback-footer { padding:10px 14px; background:#fff; text-align:right; }
+  #fv-fallback-ok.btn { background: linear-gradient(90deg, var(--fv-gold), var(--fv-gold-2)); color:#fff; border:0; padding:8px 14px; border-radius:6px; font-weight:600; }
+
+  /* small responsive tweak */
+  @media (max-width:480px){
+    #fv-fallback-modal { margin: 1rem; max-width: 92%; width: auto; }
+  }
+
+  /* Inline error styling to match template (tweak colors if needed) */
+  .fv-field-error { color: #d64545; font-size: 0.9rem; margin-top: 6px; display: block; }
+  .fv-field-valid { color: #2a9d8f; font-size: 0.9rem; margin-top: 6px; display: block; }
+  .fv-invalid-input { border-color: #e66a6a !important; box-shadow: 0 0 0 0.12rem rgba(214,69,69,0.12); }
+  .fv-valid-input { border-color: #2a9d8f !important; box-shadow: 0 0 0 0.12rem rgba(42,157,143,0.08); }
+  </style>
+</head>
+
+<body id="page-top" data-spy="scroll" data-target=".navbar-custom">
+<div id="wrapper">
+
+  <!-- your existing nav + page content (unchanged) -->
+  <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+    <div class="top-area">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-6 col-md-6">
+            <p class="bold text-left">Monday - Saturday, 8am to 8pm </p>
+          </div>
+          <div class="col-sm-6 col-md-6">
+            <p class="bold text-right">Call us now +91 7758042413</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container navigation">
+      <div class="navbar-header page-scroll">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+          <i class="fa fa-bars"></i>
+        </button>
+        <a class="navbar-brand" href="{% static 'index.html' %}" style="padding-top:0px;">
+          <img src="{% static 'img/logo.jpeg' %}" alt="" width="120%" height="120%" />
+        </a>
+      </div>
+
+      <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="#intro">Home</a></li>
+          <li><a href="#features">Features</a></li>
+          <li><a href="#facilities">Services</a></li>
+          <li><a href="#team">Team</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="badge custom-badge red pull-right">Will Get</span>Jeweller's<b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <li><a href="{% static 'index.html' %}">Mobile App</a></li>
+              <li><a href="#documents">Drafted Agreements & Policies</a></li>
+              <li><a href="#partner">Marketing Banners</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Section: intro (form lives here) -->
+  <section id="intro" class="intro">
+    <div class="intro-content">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12" style="align-content: center;">
+            <div class="wow fadeInUp" data-wow-offset="0" data-wow-delay="0.1s" style="text-align: center;">
+              <h4 class="h-light"><span>Empowering Jewellers with Digital Gold. Simple. Secure. Profitable.</span></h4>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="well well-trans">
+              <div class="wow fadeInRight" data-wow-delay="0.1s">
+                <ul class="lead-list">
+                  <li><span class="fa fa-check fa-2x icon-success"></span> <span class="list">Launch in Minutes: Your Gold App, Your Brand - <strong>Ready Today</strong><br/>Register your shop details, upload your logo – and your branded app is live instantly</span></li>
+                  <li><span class="fa fa-check fa-2x icon-success"></span> <span class="list">Promote Effortlessly: One scan, One Tap – <strong>Lifetime Customer Engagement</strong><br />Share your unique QR code – customers scan, install, register, and start buying gold with you</span></li>
+                  <li><span class="fa fa-check fa-2x icon-success"></span> <span class="list">Complete Control Dashboard: Every gram, every rupee - <strong>Fully Transparent</strong><br />Get full visibility of all transactions – both for you and your customers</span></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-6">
+            <div class="form-wrapper">
+              <div class="wow fadeInRight" data-wow-duration="2s" data-wow-delay="0.2s">
+                <div class="panel panel-skin">
+                  <div class="panel-heading">
+                    <h3 class="panel-title"><span class="fa fa-pencil-square-o"></span>Book A Demo<small>&nbsp;(It's free!)</small></h3>
+                  </div>
+                  <div class="panel-body">
+                    <form role="form" class="lead" method="post" action="/" >
+                      {% csrf_token %}
+                      <div class="row">
+                        <div class="col-xs-6 col-sm-6 col-md-6">
+                          <div class="form-group">
+                            <label>First Name</label>
+                            <input type="text" name="first_name" id="first_name" class="form-control input-md">
+                          </div>
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-6">
+                          <div class="form-group">
+                            <label>Last Name</label>
+                            <input type="text" name="last_name" id="last_name" class="form-control input-md">
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-xs-6 col-sm-6 col-md-6">
+                          <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" name="email" id="email" class="form-control input-md">
+                          </div>
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-6">
+                          <div class="form-group">
+                            <label>Phone Number</label>
+                            <input type="text" name="phone" id="phone" class="form-control input-md">
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- keep as input (we handle both input/button in JS) -->
+                      <input type="submit" value="Submit" class="btn btn-skin btn-block btn-lg">
+
+                      <p class="lead-footer">* We’ll contact you by Phone/WhatsApp and Email for the demo slot</p>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+ <section id="boxes" class="home-section paddingtop-80">
+		<div class="container marginbot-50">
+			<div class="row">
+				<div class="col-lg-8 col-lg-offset-2">
+					<div class="wow fadeInDown" data-wow-delay="0.1s">
+					<div class="section-heading text-center">
+					<h2 class="h-bold">What we have solved?</h2>
+					<p>Your customer’s gold journey is moving online. Are you part of it?<br/>
+					Turn your customer’s mobile into a gold locker – powered by you
+					</div></p>
+					</div>
+					<div class="divider-short"></div>
+				</div>
+			</div>
+		</div>
+
+	
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-3 col-md-3">
+					<div class="wow fadeInUp" data-wow-delay="0.2s">
+						<div class="box text-center">
+							
+							<i class="fa fa-trophy fa-3x circled bg-skin"></i>
+							<h4 class="h-bold">Customer Loyalty</h4>
+							<p>
+							Limited customer stickiness after purchase so bring customers back to your store using Gold Vault App
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-3 col-md-3">
+					<div class="wow fadeInUp" data-wow-delay="0.2s">
+						<div class="box text-center">
+							
+							<i class="fa fa-recycle fa-3x circled bg-skin"></i>
+							<h4 class="h-bold">Recurring Business</h4>
+							<p>
+							No digital ecosystem to engage with customers so let Customer Save, Invest & Redeem at your shop using Gold Vault App
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-3 col-md-3">
+					<div class="wow fadeInUp" data-wow-delay="0.2s">
+						<div class="box text-center">
+							<i class="fa fa-shield fa-3x circled bg-skin"></i>
+							<h4 class="h-bold">Data Ownership</h4>
+							<p>
+							Competition from online gold apps & fintechs ventures so hold your customer insights with you using Gold  Vault App
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-3 col-md-3">
+					<div class="wow fadeInUp" data-wow-delay="0.2s">
+						<div class="box text-center">
+							
+							<i class="fa fa-tags fa-3x circled bg-skin"></i>
+							<h4 class="h-bold">Brand Value</h4>
+							<p>
+							Your branding without transactional fees or customer limits, from one-time sales… to lifetime relationships using Gold Vault App 
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</section>
+	<!-- /Section: boxes -->
+	
+	
+	<section id="callaction" class="home-section paddingtop-40">	
+           <div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="callaction bg-gray">
+							<div class="row">
+								<div class="col-md-8">
+									<div class="wow fadeInUp" data-wow-delay="0.1s">
+									<div class="cta-text">
+									<h3><i>Digital gold is not the FUTURE, Time says it is NOW</i></h3>
+									<p>Simple setup. Infinite growth.</p>
+									<p>*&nbsp;Scan the QR on your mobile<br/>
+										*&nbsp;Register yourself & your shop<br/>
+										*&nbsp;Upload logo and choose color<br/>
+										*&nbsp;Generate & Promote your App QR / Link<br/>
+										*&nbsp;Spread awareness and educate customer<br/>
+										*&nbsp;Customer register & start buying Digital Gold</p>
+									</div>
+									</div>
+								</div>
+								<div class="col-md-4">
+									<div class="wow lightSpeedIn" data-wow-delay="0.1s" ><div style="text-align: center;">
+										<img src="img/registration_qr.png" alt="Registration QR" width="250px" height="250px" /><br/>
+										<div class="cta-btn">
+										<a href="https://gyaagl.club/GoldVault/owner_registration/" class="btn btn-skin btn-lg">Register & Publish <br/>Your Gold Wallet</a>	
+										</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+            </div>
+	</section>	
+	
+
+	<!-- Section: services -->
+    <section id="features" class="home-section nopadding paddingtop-60">
+    	<div class="container marginbot-50">
+			<div class="row">
+				<div class="col-lg-8 col-lg-offset-2">
+					<div class="wow fadeInDown" data-wow-delay="0.1s">
+					<div class="section-heading text-center">
+					<h2 class="h-bold"><br/><br/><br/>App Features</h2>
+					<p>Brand Loyalty | Customer Stickiness | Future-Ready<br/>We grow,  when you grow
+					</div></p>
+					</div>
+					<div class="divider-short"></div>
+				</div>
+			</div>
+		</div>
+
+		<div class="container">
+
+        <div class="row">
+			<div class="col-sm-6 col-md-6">
+				<div class="wow fadeInUp" data-wow-delay="0.2s">
+				<img src="{% static 'img/dummy/img-1.jpg' %}" class="img-responsive" alt="" />
+				</div>
+            </div>
+			<div class="col-sm-3 col-md-3">
+				
+				<div class="wow fadeInRight" data-wow-delay="0.1s">
+                <div class="service-box">
+					<div class="service-icon">
+						<span class="fa fa-sliders fa-3x"></span> 
+					</div>
+					<div class="service-desc">
+						<h5 class="h-light">Flexible Buying (24/7)</h5>
+						<p>Your shop is always open.
+						Buy gold anytime, anywhere – powered by secure cloud infrastructure.</p>
+					</div>
+                </div>
+				</div>
+				
+				<div class="wow fadeInRight" data-wow-delay="0.2s">
+				<div class="service-box">
+					<div class="service-icon">
+						<span class="fa fa-qrcode fa-3x"></span> 
+					</div>
+					<div class="service-desc">
+						<h5 class="h-light">Seamless Payments</h5>
+						<p>Fast. Easy. Trusted UPI-powered, instant, and secure transactions</p>
+					</div>
+                </div>
+				</div>
+				<div class="wow fadeInRight" data-wow-delay="0.3s">
+				<div class="service-box">
+					<div class="service-icon">
+						<span class="fa fa-lock fa-3x"></span> 
+					</div>
+					<div class="service-desc">
+						<h5 class="h-light">Rate Locking Advantage</h5>
+						<p>Secure today’s price, save smarter. Lock today’s rate instantly and grow your digital wallet</p>
+					</div>
+                </div>
+				</div>
+
+
+            </div>
+			<div class="col-sm-3 col-md-3">
+				
+				<div class="wow fadeInRight" data-wow-delay="0.1s">
+                <div class="service-box">
+					<div class="service-icon">
+						<span class="fa fa-random fa-3x"></span> 
+					</div>
+					<div class="service-desc">
+						<h5 class="h-light">Flexible Redemption</h5>
+						<p>Digital in their phone, physical in your store. Customers can withdraw gold anytime at your store</p>
+					</div>
+                </div>
+				</div>
+				
+				<div class="wow fadeInRight" data-wow-delay="0.2s">
+				<div class="service-box">
+					<div class="service-icon">
+						<span class="fa fa-bank fa-3x"></span> 
+					</div>
+					<div class="service-desc">
+						<h5 class="h-light">Safe, Secure & Transperent</h5>
+						<p>Every gram and transaction is secured & ensured. The most trusted digital investment</p>
+					</div>
+                </div>
+				</div>
+				<div class="wow fadeInRight" data-wow-delay="0.3s">
+				<div class="service-box">
+					<div class="service-icon">
+						<span class="fa fa-line-chart fa-3x"></span> 
+					</div>
+					<div class="service-desc">
+						<h5 class="h-light">100% Compliant 0% Risk</h5>
+						<p>Regulated, reliable, risk-free. Powered by SEBI/RBI-compliant providers – ensuring trust & legal safety</p>
+					</div>
+                </div>
+				</div>
+
+            </div>
+			
+        </div>		
+		</div>
+	</section>
+	<!-- /Section: services -->
+	
+	<!-- Section: works -->
+    <section id="facilities" class="home-section bg-gray paddingbot-60">
+		<div class="container marginbot-50">
+			<div class="row">
+				<div class="col-lg-8 col-lg-offset-2">
+					<div class="wow fadeInDown" data-wow-delay="0.1s">
+					<div class="section-heading text-center">
+					<h2 class="h-bold">Services</h2>
+					<p>Traditional Trust - Meets Modern Technology<br/>White-Label Branding | Dedicated Support & Training | Co-marketing</p>
+					</div>
+					</div>
+					<div class="divider-short"></div>
+				</div>
+			</div>
+		</div>
+
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-3 col-md-3">
+					<div class="wow fadeInUp" data-wow-delay="0.2s">
+						<div class="box text-center">
+							
+							<i class="fa fa-rupee fa-3x circled bg-skin"></i>
+							<h4 class="h-bold">One-Time Investment</h4>
+							<p>Lifetime Value. No hidden costs. <br/>
+							Affordable premium package for jewellers, pay once – benefit forever
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-3 col-md-3">
+					<div class="wow fadeInUp" data-wow-delay="0.2s">
+						<div class="box text-center">
+							
+							<i class="fa fa-star fa-3x circled bg-skin"></i>
+							<h4 class="h-bold">Zero Transaction Fees</h4>
+							<p>Your Margins. Your Profit.<br/>Keep what you earn – 100% on every transaction
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-3 col-md-3">
+					<div class="wow fadeInUp" data-wow-delay="0.2s">
+						<div class="box text-center">
+							<i class="fa fa-users fa-3x circled bg-skin"></i>
+							<h4 class="h-bold">Unlimited Customers</h4>
+							<p>
+							Scale without limits<br/>Onboard as many customers as you want – no restrictions
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-3 col-md-3">
+					<div class="wow fadeInUp" data-wow-delay="0.2s">
+						<div class="box text-center">
+							
+							<i class="fa fa-certificate fa-3x circled bg-skin"></i>
+							<h4 class="h-bold">Simple & Transparent</h4>
+							<p>
+							Data-driven Insights<br/>Access daily, weekly, monthly reports to track growth and customer activity.
+							</p>
+						</div>
+					</div>
+				</div>
+
+				<div id="documents" class="col-sm-12 col-md-12 col-lg-12" >
+				<h4 class="h-bold">
+				Drafted Agreements & Policies
+				</h4>
+				</div>
+                
+                <div class="col-sm-12 col-md-12 col-lg-12" >
+					<div class="wow bounceInUp" data-wow-delay="0.2s">
+                    <div id="owl-works" class="owl-carousel">
+                        <div class="item"><a href="{% static 'docs/Terms n Conditions.pdf' %}" title="Terms And Conditions" data-lightbox-gallery="gallery1" data-lightbox-hidpi="img/works/1@2x.jpg"><img src="{% static 'img/photo/terms-and-conditions.png' %}" class="img-responsive" alt="img"> <h6>Terms and Conditions</h6></a></div>
+
+                        <div class="item"><a href="{% static 'docs/Privacy Policy.pdf' %}" title="Privacy Policy" data-lightbox-gallery="gallery1" data-lightbox-hidpi="img/works/2@2x.jpg"><img src="{% static 'img/photo/compliant.png' %}" class="img-responsive " alt="img"><h6>Privacy Policy</h6></a></div>
+
+                        <div class="item"><a href="{% static 'docs/Refund n Cancellation Policy.pdf' %}" title="Refund And Cancellations" data-lightbox-gallery="gallery1" data-lightbox-hidpi="img/works/3@2x.jpg"><img src="{% static 'img/photo/refund.png' %}" class="img-responsive " alt="img"><h6>Refund And Cancellations</h6></a></div>
+
+                        <div class="item"><a href="{% static 'docs/Risk Disclaimer Notice.pdf' %}" title="Risk Disclaimer" data-lightbox-gallery="gallery1" data-lightbox-hidpi="img/works/4@2x.jpg"><img src="{% static 'img/photo/warning.png' %}" class="img-responsive " alt="img"><h6>Risk Disclaimer</h6></a></div>
+
+                        <div class="item"><a href="{% static 'docs/Customer Declaration n Consent.pdf' %}" title="Customer Consent" data-lightbox-gallery="gallery1" data-lightbox-hidpi="img/works/5@2x.jpg"><img src="{% static 'img/photo/donor-consent-form.png' %}" class="img-responsive " alt="img"><h6>Customer Consent</h6></a></div>
+
+                        <div class="item"><a href="{% static 'docs/FAQ.pdf' %}" title="Frequently Asked Questions" data-lightbox-gallery="gallery1" data-lightbox-hidpi="img/works/6@2x.jpg"><img src="{% static 'img/photo/faq.png' %}" class="img-responsive " alt="img"><h6>FAQs</h6></a></div>
+                    </div>
+					</div>
+                </div>
+            </div>
+		</div>
+	</section>
+	<!-- /Section: works -->
+
+
+	<section id="partner" class="home-section paddingbot-60">	
+		<div class="container marginbot-50">
+			<div class="row">
+				<div class="col-lg-8 col-lg-offset-2">
+					<div class="wow lightSpeedIn" data-wow-delay="0.1s">
+					<div class="section-heading text-center">
+					<h2 class="h-bold">Marketing Banners</h2>
+					<p>Take Charge of Your Digital Wallet App Today with Our Specially Designed Banners</p>
+					</div>
+					</div>
+					<div class="divider-short"></div>
+				</div>
+			</div>
+		</div>
+		
+           <div class="container">
+				<div class="row">
+					<div class="col-sm-6 col-md-3">
+						<div class="partner">
+						<a href="#"><img src="{% static 'img/dummy/1.jpg' %}" width="300px" height="300px" alt="" /></a>
+						</div>
+					</div>
+					<div class="col-sm-6 col-md-3">
+						<div class="partner">
+						<a href="#"><img src="{% static 'img/dummy/2.jpg' %}" width="300px" height="300px" alt="" /></a>
+						</div>
+					</div>
+					<div class="col-sm-6 col-md-3">
+						<div class="partner">
+						<a href="#"><img src="{% static 'img/dummy/3.jpg' %}" width="300px" height="300px" alt="" /></a>
+						</div>
+					</div>
+					<div class="col-sm-6 col-md-3">
+						<div class="partner">
+						<a href="#"><img src="{% static 'img/dummy/4.jpeg' %}" width="300px" height="300px" alt="" /></a>
+						</div>
+					</div>
+				</div>
+            </div>
+	</section>
+
+	
+
+	
+	<!-- Section: testimonial -->
+    <!-- <section id="testimonial" class="home-section paddingbot-60 parallax" data-stellar-background-ratio="0.5">
+
+<div class="carousel-reviews broun-block">
+	<div class="container marginbot-50">
+			<div class="row">
+				<div class="col-lg-8 col-lg-offset-2">
+					<div class="wow fadeInDown" data-wow-delay="0.1s">
+					<div class="section-heading text-center">
+					<h2 class="h-bold">Our Customer Say's</h2>
+					<p>Proof that digital gold builds real loyalty<br/>Trusted by Jewellers, Loved by Customers</p>
+					</div>
+					</div>
+					<div class="divider-short"></div>
+				</div>
+			</div>
+		</div>
+
+    <div class="container">
+        <div class="row">
+            <div id="carousel-reviews" class="carousel slide" data-ride="carousel">
+            
+                <div class="carousel-inner">
+                    <div class="item active">
+                	    <div class="col-md-4 col-sm-6">
+        				    <div class="block-text rel zmin">
+						        <a title="" href="#">Emergency Contraception</a>
+							    <div class="mark">My rating: <span class="rating-input"><span data-value="0" class="glyphicon glyphicon-star"></span><span data-value="1" class="glyphicon glyphicon-star"></span><span data-value="2" class="glyphicon glyphicon-star"></span><span data-value="3" class="glyphicon glyphicon-star"></span><span data-value="4" class="glyphicon glyphicon-star-empty"></span><span data-value="5" class="glyphicon glyphicon-star-empty"></span>  </span></div>
+						        <p>Ne eam errem semper. Laudem detracto phaedrum cu vim, pri cu errem fierent fabellas. Quis magna in ius, pro vidit nonumy te, nostrud ...</p>
+							    <ins class="ab zmin sprite sprite-i-triangle block"></ins>
+					        </div>
+							<div class="person-text rel text-light">					
+								<img src="{% static 'img/testimonials/1.jpg' %}" alt="" class="person img-circle" />
+								<a title="" href="#">Anna</a>
+								<span>Chicago, Illinois</span>
+							</div>
+						</div>
+            			<div class="col-md-4 col-sm-6 hidden-xs">
+						    <div class="block-text rel zmin">
+						        <a title="" href="#">Orthopedic Surgery</a>
+							    <div class="mark">My rating: <span class="rating-input"><span data-value="0" class="glyphicon glyphicon-star"></span><span data-value="1" class="glyphicon glyphicon-star"></span><span data-value="2" class="glyphicon glyphicon-star-empty"></span><span data-value="3" class="glyphicon glyphicon-star-empty"></span><span data-value="4" class="glyphicon glyphicon-star-empty"></span><span data-value="5" class="glyphicon glyphicon-star-empty"></span>  </span></div>
+						        <p>Ne eam errem semper. Laudem detracto phaedrum cu vim, pri cu errem fierent fabellas. Quis magna in ius, pro vidit nonumy te, nostrud ...</p>
+							    <ins class="ab zmin sprite sprite-i-triangle block"></ins>
+				            </div>
+							<div class="person-text rel text-light">
+				                <img src="{% static 'img/testimonials/2.jpg' %}" alt="" class="person img-circle" />
+								<a title="" href="#">Matthew G</a>
+								<span>San Antonio, Texas</span>
+							</div>
+						</div>
+						<div class="col-md-4 col-sm-6 hidden-sm hidden-xs">
+							<div class="block-text rel zmin">
+								<a title="" href="#">Medical consultation</a>
+								<div class="mark">My rating: <span class="rating-input"><span data-value="0" class="glyphicon glyphicon-star"></span><span data-value="1" class="glyphicon glyphicon-star"></span><span data-value="2" class="glyphicon glyphicon-star"></span><span data-value="3" class="glyphicon glyphicon-star"></span><span data-value="4" class="glyphicon glyphicon-star"></span><span data-value="5" class="glyphicon glyphicon-star"></span>  </span></div>
+						        <p>Ne eam errem semper. Laudem detracto phaedrum cu vim, pri cu errem fierent fabellas. Quis magna in ius, pro vidit nonumy te, nostrud ...</p>
+							    <ins class="ab zmin sprite sprite-i-triangle block"></ins>
+							</div>
+							<div class="person-text rel text-light">
+								<img src="{% static 'img/testimonials/3.jpg' %}" alt="" class="person img-circle" />
+								<a title="" href="#">Scarlet Smith</a>
+								<span>Dallas, Texas</span>
+							</div>
+						</div>
+                    </div>
+                    <div class="item">
+                        <div class="col-md-4 col-sm-6">
+        				    <div class="block-text rel zmin">
+						        <a title="" href="#">Birth control pills</a>
+							    <div class="mark">My rating: <span class="rating-input"><span data-value="0" class="glyphicon glyphicon-star"></span><span data-value="1" class="glyphicon glyphicon-star"></span><span data-value="2" class="glyphicon glyphicon-star"></span><span data-value="3" class="glyphicon glyphicon-star"></span><span data-value="4" class="glyphicon glyphicon-star-empty"></span><span data-value="5" class="glyphicon glyphicon-star-empty"></span>  </span></div>
+						        <p>Ne eam errem semper. Laudem detracto phaedrum cu vim, pri cu errem fierent fabellas. Quis magna in ius, pro vidit nonumy te, nostrud ...</p>
+							    <ins class="ab zmin sprite sprite-i-triangle block"></ins>
+					        </div>
+							<div class="person-text rel text-light">
+								<img src="{% static 'img/testimonials/4.jpg' %}" alt="" class="person img-circle" />
+								<a title="" href="#">Lucas Thompson</a>
+								<span>Austin, Texas</span>
+							</div>
+						</div>
+            			<div class="col-md-4 col-sm-6 hidden-xs">
+						    <div class="block-text rel zmin">
+						        <a title="" href="#">Radiology</a>
+							    <div class="mark">My rating: <span class="rating-input"><span data-value="0" class="glyphicon glyphicon-star"></span><span data-value="1" class="glyphicon glyphicon-star"></span><span data-value="2" class="glyphicon glyphicon-star-empty"></span><span data-value="3" class="glyphicon glyphicon-star-empty"></span><span data-value="4" class="glyphicon glyphicon-star-empty"></span><span data-value="5" class="glyphicon glyphicon-star-empty"></span>  </span></div>
+						        <p>Ne eam errem semper. Laudem detracto phaedrum cu vim, pri cu errem fierent fabellas. Quis magna in ius, pro vidit nonumy te, nostrud ...</p>
+							    <ins class="ab zmin sprite sprite-i-triangle block"></ins>
+				            </div>
+							<div class="person-text rel text-light">
+								<img src="img/testimonials/5.jpg" alt="" class="person img-circle" />
+						        <a title="" href="#">Ella Mentree</a>
+								<span>Fort Worth, Texas</span>
+							</div>
+						</div>
+						<div class="col-md-4 col-sm-6 hidden-sm hidden-xs">
+							<div class="block-text rel zmin">
+								<a title="" href="#">Cervical Lesions</a>
+								<div class="mark">My rating: <span class="rating-input"><span data-value="0" class="glyphicon glyphicon-star"></span><span data-value="1" class="glyphicon glyphicon-star"></span><span data-value="2" class="glyphicon glyphicon-star"></span><span data-value="3" class="glyphicon glyphicon-star"></span><span data-value="4" class="glyphicon glyphicon-star"></span><span data-value="5" class="glyphicon glyphicon-star"></span>  </span></div>
+						        <p>Ne eam errem semper. Laudem detracto phaedrum cu vim, pri cu errem fierent fabellas. Quis magna in ius, pro vidit nonumy te, nostrud ...</p>
+							    <ins class="ab zmin sprite sprite-i-triangle block"></ins>
+							</div>
+							<div class="person-text rel text-light">
+								<img src="img/testimonials/6.jpg" alt="" class="person img-circle" />
+								<a title="" href="#">Suzanne Adam</a>
+								<span>Detroit, Michigan</span>
+							</div>
+						</div>
+                    </div>
+                    
+                   
+                </div>
+				
+                <a class="left carousel-control" href="#carousel-reviews" role="button" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                </a>
+                <a class="right carousel-control" href="#carousel-reviews" role="button" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+	</section> -->
+
+	<!-- /Section: testimonial -->
+	
+
+	<!-- Section: pricing -->	
+	<section id="pricing" class="home-section bg-gray paddingbot-60">	
+		<div class="container marginbot-50">
+			<div class="row">
+				<div class="col-lg-8 col-lg-offset-2">
+					<div class="wow lightSpeedIn" data-wow-delay="0.1s">
+					<div class="section-heading text-center">
+					<h2 class="h-bold">Partnership Model</h2>
+					<p>Let’s create your Gold Wallet App And Start Digital Gold Journey</p>
+					</div>
+					</div>
+					<div class="divider-short"></div>
+				</div>
+			</div>
+		</div>
+           
+		   <div class="container">
+			
+			<div class="row">
+
+				<div class="col-sm-4 pricing-box">
+					<div class="wow bounceInUp" data-wow-delay="0.1s">
+					<div class="pricing-content general">
+						<h2>Basic Package</h2>
+						<h3>INR 21,000<sup>.00</sup> <span>/ one time</span></h3>
+						<ul>
+							<li>INR 12000/per Year Store Charges<i class="fa fa-check icon-success"></i></li>
+							<li>Apple & Google Playstore Links<i class="fa fa-check icon-success"></i></li>
+							<li><del>No Payment Gateway, No Transactional Fees</del><i class="fa fa-times icon-danger"></i></li>
+							<li>INR 500 / Per User / Per Year<i class="fa fa-check icon-success"></i></li>
+						</ul>
+
+						<div class="price-bottom">
+							<a href="#" class="btn btn-skin btn-lg">Know More</a>
+						</div>
+					</div>
+					</div>
+				</div>
+
+				<div class="col-sm-4 pricing-box featured-price">
+					<div class="wow bounceInUp" data-wow-delay="0.3s">
+					<div class="pricing-content featured">
+						<h2>Win-Win Package</h2>
+						<h3>INR 11,000<sup>.00</sup> <span>/ one time</span></h3>
+						<ul>
+							<li>Zero Store/Transaction Charges<i class="fa fa-check icon-success"></i></li>
+							<li>Android And iOS Webapp Link<i class="fa fa-check icon-success"></i></li>
+							<li><del>Google Store + Apple Store + Payment Gateway</del><i class="fa fa-times icon-danger"></i></li>
+							<li>INR 500 / Per User / Per Year<i class="fa fa-check icon-success"></i></li>
+						</ul>
+
+						<div class="price-bottom">
+							<a href="https://gyaagl.club/GoldVault/owner_registration/" class="btn btn-skin btn-lg">Get Started</a>
+						</div>
+					</div>
+					</div>
+				</div>
+
+				<div class="col-sm-4 pricing-box">
+					<div class="wow bounceInUp" data-wow-delay="0.2s">
+					<div class="pricing-content general last">
+						<h2>Untimate Package</h2>
+						<h3>INR 25,000<sup>.00</sup> <span>/ one time</span></h3>
+						<ul>
+							<li>INR 15000/per Year Store Charges<i class="fa fa-check icon-success"></i></li>
+							<li>Apple & Google Playstore Links<i class="fa fa-check icon-success"></i></li>
+							<li>Payment Gateway with Transactional Fees<i class="fa fa-check icon-success"></i></li>
+							<li>INR 500 / Per User / Per Year<i class="fa fa-check icon-success"></i></li>
+						</ul>
+
+						<div class="price-bottom">
+							<a href="#" class="btn btn-skin btn-lg">Know More</a>
+						</div>
+					</div>
+					</div>
+				</div>
+
+			</div>				
+				
+            </div>
+	</section>	 
+	<!-- /Section: pricing -->
+	
+
+<!-- Section: team -->
+    <section id="team" class="home-section paddingbot-60">
+		<div class="container marginbot-50">
+			<div class="row">
+				<div class="col-lg-8 col-lg-offset-2">
+					<div class="wow fadeInDown" data-wow-delay="0.1s">
+					<div class="section-heading text-center">
+					<h2 class="h-bold">Who & Why We?</h2>
+					<p>A Trusted Partner Specialized in Digital Gold Platform with Technology<br/>To help you digitize gold ownership & customer loyalty
+					</div></p>
+					</div>
+					<div class="divider-short"></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+				
+          <!--   <div id="filters-container" class="cbp-l-filters-alignLeft">
+                <div data-filter="*" class="cbp-filter-item-active cbp-filter-item">All (<div class="cbp-filter-counter"></div>)</div>
+                <div data-filter=".cardiologist" class="cbp-filter-item">Cardiologist (<div class="cbp-filter-counter"></div>)</div>
+                <div data-filter=".psychiatrist" class="cbp-filter-item">Psychiatrist (<div class="cbp-filter-counter"></div>)</div>
+                <div data-filter=".neurologist" class="cbp-filter-item">Neurologist (<div class="cbp-filter-counter"></div>)</div>
+            </div> -->
+		
+            <div id="grid-container" class="cbp-l-grid-team">
+                <ul>
+                    <li class="cbp-item psychiatrist">
+                        <a href="{% static 'team/member1.html' %}" class="cbp-caption cbp-singlePage">
+                            <div class="cbp-caption-defaultWrap">
+                                <img src="{% static 'img/team/1.jpg' %}" alt="" width="100%">
+                            </div>
+                            <div class="cbp-caption-activeWrap">
+                                <div class="cbp-l-caption-alignCenter">
+                                    <div class="cbp-l-caption-body">
+                                        <div class="cbp-l-caption-text">VIEW PROFILE</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="{% static 'team/member1.html' %}" class="cbp-singlePage cbp-l-grid-team-name">Mr. Mahendra Luniya</a>
+                        <div class="cbp-l-grid-team-position">Director</div>
+                    </li>
+                    <li class="cbp-item cardiologist">
+                        <a href="{% static 'team/member2.html' %}" class="cbp-caption cbp-singlePage">
+                            <div class="cbp-caption-defaultWrap">
+                                <img src="{% static 'img/team/2.jpg' %}" alt="" width="100%">
+                            </div>
+                            <div class="cbp-caption-activeWrap">
+                                <div class="cbp-l-caption-alignCenter">
+                                    <div class="cbp-l-caption-body">
+                                        <div class="cbp-l-caption-text">VIEW PROFILE</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="{% static 'team/member2.html' %}" class="cbp-singlePage cbp-l-grid-team-name">Mrs. Shardha Luniya</a>
+                        <div class="cbp-l-grid-team-position">Director</div>
+                    </li>
+                    <li class="cbp-item cardiologist">
+                        <a href="{% static 'team/member3.html' %}" class="cbp-caption cbp-singlePage">
+                            <div class="cbp-caption-defaultWrap">
+                                <img src="{% static 'img/team/3.jpg' %}" alt="" width="100%">
+                            </div>
+                            <div class="cbp-caption-activeWrap">
+                                <div class="cbp-l-caption-alignCenter">
+                                    <div class="cbp-l-caption-body">
+                                        <div class="cbp-l-caption-text">VIEW PROFILE</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="{% static 'team/member3.html' %}" class="cbp-singlePage cbp-l-grid-team-name">Mr. Ranjan Paradkar</a>
+                        <div class="cbp-l-grid-team-position">Executive Director</div>
+                    </li>
+                    <li class="cbp-item neurologist">
+                        <a href="{% static 'team/member4.html' %}" class="cbp-caption cbp-singlePage">
+                            <div class="cbp-caption-defaultWrap">
+                                <img src="{% static 'img/team/4.jpg' %}" alt="" width="100%">
+                            </div>
+                            <div class="cbp-caption-activeWrap">
+                                <div class="cbp-l-caption-alignCenter">
+                                    <div class="cbp-l-caption-body">
+                                        <div class="cbp-l-caption-text">VIEW PROFILE</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="{% static 'team/member4.html' %}" class="cbp-singlePage cbp-l-grid-team-name">Mr. Sunil Limje</a>
+                        <div class="cbp-l-grid-team-position">IT Director</div>
+                    </li>
+
+                </ul>
+            </div>
+			</div>
+			</div>
+		</div>
+
+	</section>
+
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-6 col-md-4">
+          <div class="widget">
+            <h5>About Gold Vault</h5>
+            <p>Empowering Jewellers with Digital Gold.<br/> Simple. Secure. Profitable.</p>
+          </div>
+        </div>
+        <div class="col-sm-4 col-md-4">
+          <div class="widget">
+            <h5>Get In Touch</h5>
+            <p>J 115, Ground Floor, Mega Center, Pune-Solapur Road, Hadapsar, Pune – 411028</p>
+            <ul>
+              <li>Monday - Saturday, 8am to 8pm</li>
+              <li>+91 7758042413</li>
+              <li>admin@gyaagl.club</li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-sm-4 col-md-4">
+          <div class="widget">
+            <h5>Jeweller's Agreement</h5>
+            <ul class="company-social">
+              <li class="social-facebook"><a href="{% static 'docs/Developer Agreement.pdf' %}"><i class="fa fa-file"></i><h6>Development Agreement</h6></a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="sub-footer">
+      <div class="container">
+        <div class="text-center">
+          <p>&copy;Copyright 2025. All rights reserved.</p>
+          <p><a href="https://www.theappwelt.com/">Designed And Developed by AppWelt Pvt. Ltd.</a></p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</div>
+<a href="#" class="scrollup"><i class="fa fa-angle-up active"></i></a>
+
+<!-- Core JS (keep these in this order; modal script will be inserted after bootstrap) -->
+<script src="{% static 'js/jquery.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+
+<!-- Modal + form submit logic (placed after bootstrap so bootstrap.Modal will be present) -->
+<script>
+(function(){
+  // small debug no-op
+  function dbg(){ /* no-op debug placeholder */ }
+
+  // cleanup stray backdrops and restore scroll
+  function cleanupBackdrop() {
+    try {
+      document.querySelectorAll('.modal-backdrop').forEach(el => el.remove());
+      document.getElementById('fv-fallback-modal')?.remove();
+      document.getElementById('fv-fallback-overlay')?.remove();
+      document.body.style.overflow = 'auto';
+    } catch(e){ dbg('cleanupBackdrop', e); }
+  }
+
+  // create fallback modal (only one implementation)
+  function createFallbackModal() {
+    if (document.getElementById('fv-fallback-modal')) return;
+    const html = `
+      <div id="fv-fallback-overlay" style="position:fixed; inset:0; background:rgba(0,0,0,0.45); z-index:1999;"></div>
+      <div id="fv-fallback-modal" role="dialog" aria-modal="true" style="position:fixed; z-index:2000; left:50%; top:25%; transform:translate(-50%,0); max-width:520px; width:90%; padding:0; border-radius:12px; overflow:hidden;">
+        <div id="fv-fallback-header" style="padding:14px 16px; display:flex; align-items:center; gap:12px;">
+          <div id="fv-fallback-icon" aria-hidden="true" style="width:56px;height:56px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"></div>
+          <div style="flex:1"><div id="fv-fallback-title" style="font-weight:700;color:#fff;font-size:1rem">Response</div></div>
+          <button id="fv-fallback-close" aria-label="Close" style="background:transparent;border:0;color:rgba(255,255,255,0.95);font-size:22px;cursor:pointer;">&times;</button>
+        </div>
+        <div id="fv-fallback-body" style="padding:18px; background:var(--fv-muted, #fbf8f0); color:var(--fv-dark, #1b1b1b); white-space:pre-wrap;"></div>
+        <div id="fv-fallback-footer" style="padding:10px 14px; background:#fff; text-align:right;">
+          <button id="fv-fallback-ok" class="btn btn-skin">Close</button>
+        </div>
+      </div>
+    `;
+    const container = document.createElement('div');
+    container.innerHTML = html;
+    document.body.appendChild(container);
+
+    const closeEls = [
+      document.getElementById('fv-fallback-close'),
+      document.getElementById('fv-fallback-ok'),
+      document.getElementById('fv-fallback-overlay')
+    ];
+    closeEls.forEach(el => {
+      if (!el) return;
+      el.addEventListener('click', function(){
+        document.getElementById('fv-fallback-modal')?.remove();
+        document.getElementById('fv-fallback-overlay')?.remove();
+        cleanupBackdrop();
+      });
+    });
+  }
+
+  // apply header gradient & inject appropriate icon
+  function applyHeaderAndIcon(iconEl, headerEl, type) {
+    const colors = {
+      primary: ['#b8860b','#d4a81a'],
+      success: ['#2a9d8f','#36b79b'],
+      error:   ['#d64545','#ef7b7b']
+    };
+    const c = colors[type] || colors.primary;
+    if (headerEl) headerEl.style.background = `linear-gradient(90deg, ${c[0]}, ${c[1]})`;
+    if (iconEl) {
+      iconEl.innerHTML = '';
+      if (type === 'success') {
+        iconEl.innerHTML = `<svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="rgba(255,255,255,0.08)"></circle><path id="fvTick" class="fv-tick" d="M7 13.5l2.5 2.5L17 8.5" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>`;
+      } else if (type === 'error') {
+        iconEl.innerHTML = `<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="#fff" d="M12 10.586l4.95-4.95 1.414 1.414L13.414 12l4.95 4.95-1.414 1.414L12 13.414l-4.95 4.95-1.414-1.414L10.586 12 5.636 7.05 7.05 5.636z"/></svg>`;
+      } else {
+        iconEl.innerHTML = `<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="#fff" d="M11 9h2v6h-2V9zm0-4h2v2h-2V5z"/></svg>`;
+      }
+    }
+  }
+
+  // animate tick path stroke
+  function animateFallbackTick(iconEl) {
+    try {
+      const tick = iconEl && iconEl.querySelector('.fv-tick');
+      if (!tick) return;
+      const len = tick.getTotalLength ? tick.getTotalLength() : 1000;
+      tick.style.strokeDasharray = len;
+      tick.style.strokeDashoffset = len;
+      setTimeout(()=> { tick.style.transition = 'stroke-dashoffset 450ms ease-out'; tick.style.strokeDashoffset = '0'; }, 40);
+    } catch(e){ dbg('tick animate err', e); }
+  }
+
+  // showModal(text, type='primary', autoCloseMs=0)
+  window.showModal = function(text, type='primary', autoCloseMs=0) {
+    dbg('showModal', type);
+    cleanupBackdrop();
+
+    // set into bootstrap modal body if exists
+    const bsBody = document.getElementById('respModalBody');
+    if (bsBody) bsBody.textContent = text;
+
+    // If bootstrap Modal exists and respModal markup present, prefer it
+    const modalEl = document.getElementById('respModal');
+    if (window.bootstrap && typeof bootstrap.Modal === 'function' && modalEl) {
+      try {
+        modalEl.classList.remove('fv-primary','fv-success','fv-error');
+        modalEl.classList.add(type === 'success' ? 'fv-success' : (type === 'error' ? 'fv-error' : 'fv-primary'));
+        // optionally adjust header/icon if identifiers exist inside respModal
+        const respIcon = document.getElementById('respModalIcon');
+        const respHeader = modalEl.querySelector('.fv-header');
+        if (respIcon || respHeader) applyHeaderAndIcon(respIcon || document.createElement('div'), respHeader || modalEl, type);
+
+        const modal = new bootstrap.Modal(modalEl, {backdrop:'static'});
+        modal.show();
+
+        if (autoCloseMs && type === 'success') {
+          setTimeout(()=> {
+            try { modal.hide(); } catch(e){}
+          }, autoCloseMs);
+        }
+        return;
+      } catch(e){
+        dbg('bootstrap modal use failed', e);
+      }
+    }
+
+    // Fallback
+    createFallbackModal();
+    const bodyEl = document.getElementById('fv-fallback-body');
+    const iconEl = document.getElementById('fv-fallback-icon');
+    const headerEl = document.getElementById('fv-fallback-header');
+    const titleEl = document.getElementById('fv-fallback-title');
+    if (bodyEl) bodyEl.textContent = text;
+    if (titleEl) titleEl.textContent = (type === 'success' ? 'Success' : (type === 'error' ? 'Error' : 'Response'));
+    applyHeaderAndIcon(iconEl, headerEl, type);
+
+    if (type === 'success') animateFallbackTick(iconEl);
+
+    // prevent body scroll behind modal
+    document.body.style.overflow = 'hidden';
+
+    // auto close on success if requested
+    if (autoCloseMs && type === 'success') {
+      setTimeout(()=> {
+        document.getElementById('fv-fallback-modal')?.remove();
+        document.getElementById('fv-fallback-overlay')?.remove();
+        cleanupBackdrop();
+      }, autoCloseMs);
+    }
+  };
+
+  // ---- Form submission handlers ----
+  const form = document.querySelector('form');
+  if (!form) { dbg('no form found'); return; }
+
+  // supports input[type=submit] and button[type=submit]
+  const submitBtn = form.querySelector('input[type="submit"], button[type="submit"]');
+
+  function setBtnSending(btn){
+    if(!btn) return;
+    btn.disabled = true;
+    const tag = btn.tagName;
+    const current = (tag === 'INPUT') ? btn.value : (btn.innerText || btn.textContent);
+    btn.dataset.orig = current;
+    if (tag === 'INPUT') btn.value = 'Sending...';
+    else btn.innerText = 'Sending...';
+  }
+  function restoreBtn(btn){
+    if(!btn) return;
+    btn.disabled = false;
+    const tag = btn.tagName;
+    const orig = btn.dataset.orig || (tag === 'INPUT' ? 'Submit' : 'Submit');
+    if (tag === 'INPUT') btn.value = orig;
+    else btn.innerText = orig;
+  }
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    setBtnSending(submitBtn);
+
+    const csrftoken = (function getCookie(name){
+      const v = document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)');
+      return v ? v.pop() : '';
+    })('csrftoken');
+
+    const formData = new FormData(form);
+    const controller = new AbortController();
+    const timeoutMs = 12000;
+    const timeoutId = setTimeout(() => {
+      controller.abort();
+    }, timeoutMs);
+
+    fetch(window.location.pathname, {
+      method: 'POST',
+      headers: {
+        'X-Requested-With': 'XMLHttpRequest',
+        'X-CSRFToken': csrftoken
+      },
+      body: formData,
+      credentials: 'same-origin',
+      signal: controller.signal
+    })
+    .then(async (resp) => {
+      clearTimeout(timeoutId);
+      restoreBtn(submitBtn);
+
+      // if not OK
+      if (!resp.ok) {
+        let message = `Request failed (status ${resp.status})`;
+        try {
+          const j = await resp.json();
+          if (j && j.errors) {
+            message = Object.entries(j.errors).map(([k,v]) => `${k}: ${v.join ? v.join(', ') : v}`).join('\n');
+          } else if (j && j.message_text) {
+            message = j.message_text;
+          } else {
+            message = JSON.stringify(j);
+          }
+        } catch(err) {
+          const txt = await resp.text().catch(()=>null);
+          message = txt || message;
+        }
+        showModal(message, 'error');
+        return;
+      }
+
+      // OK: parse JSON and show success
+      try {
+        const j = await resp.json();
+        const msg = (j && j.message_text) ? j.message_text : (typeof j === 'string' ? j : JSON.stringify(j));
+        // show success with green header + tick and auto-close
+        showModal(msg, 'success', 5000);
+        form.reset();
+      } catch(parseErr) {
+        const txt = await resp.text().catch(()=>String(parseErr));
+        showModal(txt || 'Success', 'primary');
+        form.reset();
+      }
+    })
+    .catch((err) => {
+      clearTimeout(timeoutId);
+      restoreBtn(submitBtn);
+      if (err.name === 'AbortError') {
+        showModal('Request timed out (12s). The external service may be slow. Please try again.', 'error');
+      } else {
+        showModal('Failed to submit enquiry. Error: ' + (err && err.message ? err.message : String(err)), 'error');
+      }
+      cleanupBackdrop();
+    });
+  });
+
+  // expose test helper
+  window.fv_debug_test_modal = function(text){
+    showModal(text || 'test', 'primary', 1500);
+  };
+
+})();
+</script>
+
+<!-- rest of your page scripts -->
+<script src="{% static 'js/jquery.easing.min.js' %}"></script>
+<script src="{% static 'js/wow.min.js' %}"></script>
+<script src="{% static 'js/jquery.scrollTo.js' %}"></script>
+<script src="{% static 'js/jquery.appear.js' %}"></script>
+<script src="{% static 'js/stellar.js' %}"></script>
+<script src="{% static 'plugins/cubeportfolio/js/jquery.cubeportfolio.min.js' %}"></script>
+<script src="{% static 'js/owl.carousel.min.js' %}"></script>
+<script src="{% static 'js/nivo-lightbox.min.js' %}"></script>
+<script src="{% static 'js/custom.js' %}"></script>
+
+<!-- phone validation script (kept as you had it, unchanged except minor safety) -->
+<script>
+(function(){
+  const phone = document.getElementById('phone');
+  const form = document.querySelector('form');
+  if (!phone || !form) return;
+
+  const submitBtn = form.querySelector('input[type="submit"], button[type="submit"]');
+  let msgEl = phone.nextElementSibling;
+  if (!msgEl || !(msgEl.classList && (msgEl.classList.contains('fv-field-error') || msgEl.classList.contains('fv-field-valid')))) {
+    msgEl = document.createElement('div');
+    msgEl.className = 'fv-field-error';
+    phone.parentNode.appendChild(msgEl);
+  }
+
+  const mobileRegex = /^[6-9]\d{9}$/;
+
+  function setInvalid(message) {
+    msgEl.className = 'fv-field-error';
+    msgEl.textContent = message;
+    phone.classList.add('fv-invalid-input');
+    phone.classList.remove('fv-valid-input');
+    if (submitBtn) submitBtn.disabled = true;
+  }
+  function setValid(message) {
+    msgEl.className = 'fv-field-valid';
+    msgEl.textContent = message || 'Looks good';
+    phone.classList.remove('fv-invalid-input');
+    phone.classList.add('fv-valid-input');
+    if (submitBtn) submitBtn.disabled = false;
+  }
+  function setNeutral() {
+    msgEl.className = '';
+    msgEl.textContent = '';
+    phone.classList.remove('fv-invalid-input');
+    phone.classList.remove('fv-valid-input');
+    if (submitBtn) submitBtn.disabled = false;
+  }
+
+  phone.addEventListener('keydown', function(e) {
+    const allowed = ['Backspace','Tab','ArrowLeft','ArrowRight','Delete','Home','End'];
+    if (allowed.includes(e.key)) return;
+    if (e.ctrlKey || e.metaKey) return;
+    if (!/^\d$/.test(e.key)) e.preventDefault();
+  });
+
+  phone.addEventListener('paste', function(e){
+    e.preventDefault();
+    const text = (e.clipboardData || window.clipboardData).getData('text') || '';
+    const digits = text.replace(/\D+/g, '');
+    const start = phone.selectionStart || 0;
+    const end = phone.selectionEnd || 0;
+    const val = phone.value;
+    const newVal = val.slice(0, start) + digits + val.slice(end);
+    phone.value = newVal.substring(0, 20);
+    phone.dispatchEvent(new Event('input', {bubbles:true}));
+  });
+
+  phone.addEventListener('input', function(){
+    const v = phone.value.replace(/\D+/g,'');
+    if (phone.value !== v) phone.value = v;
+    if (v.length === 0) { setNeutral(); return; }
+    if (v.length < 10) { setInvalid('Mobile number must be 10 digits and start with 6/7/8/9'); return; }
+    if (v.length > 10) { setInvalid('Mobile number should be exactly 10 digits'); return; }
+    if (!mobileRegex.test(v)) { setInvalid('Enter valid Indian mobile number starting with 6,7,8 or 9'); return; }
+    setValid('Valid mobile number');
+  });
+
+  form.addEventListener('submit', function(e){
+    const v = phone.value.replace(/\D+/g,'');
+    if (!mobileRegex.test(v)) {
+      e.preventDefault();
+      setInvalid('Enter valid 10-digit mobile number starting with 6,7,8 or 9');
+      phone.focus();
+      if (window.showModal) showModal('Enter valid 10-digit mobile number starting with 6,7,8 or 9', 'error');
+      return false;
+    }
+    return true;
+  });
+
+  phone.dispatchEvent(new Event('input', {bubbles:true}));
+})();
+</script>
+
+</body>
+</html>
