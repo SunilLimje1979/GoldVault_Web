@@ -1,0 +1,120 @@
+/*
+#1 color = linear-gradient(270deg, #ffb55b 4.95%, #ffe05c);
+#2 color = #0f7c7b;
+*/
+
+a:hover,
+a:focus {
+    color: linear-gradient(270deg, #ffb55b 4.95%, #ffe05c);
+}
+
+.circled {
+	background: linear-gradient(270deg, #ffb55b 4.95%, #ffe05c);
+}
+
+.con1 > div, .con2 > div, .con3 > div { 
+	background-color: linear-gradient(270deg, #ffb55b 4.95%, #ffe05c);
+}
+
+.scrollup:hover {
+	background: linear-gradient(270deg, #ffb55b 4.95%, #ffe05c);
+}
+
+
+/* service */
+
+.service-icon span {
+	color: linear-gradient(270deg, #ffb55b 4.95%, #ffe05c);
+}
+
+
+
+/* button */
+.btn-skin {
+  background-color: #ffb55b;
+  border-color: #ffe05c;
+}
+
+
+/* top #0f7c7b*/
+.top-area {
+	background: #585141;
+}
+
+/* menu */
+
+.navbar-custom ul.nav ul.dropdown-menu li a:hover {
+	color: #;
+}
+.navbar-custom.top-nav-collapse .nav li a:hover,
+.navbar-custom .nav li a:hover,
+.navbar-custom .nav li.active a,.navbar-custom.top-nav-collapse .nav li.active a  {
+    color: #0f7c7b;
+}
+
+
+.owl-theme .owl-controls .owl-page.active span,
+.owl-theme .owl-controls.clickable .owl-page:hover span {
+    background-color: linear-gradient(270deg, #ffb55b 4.95%, #ffe05c);
+}
+
+/* linear-gradient(270deg, #ffb55b 4.95%, #ffe05c) */
+.bg-skin {
+	background: linear-gradient(270deg, #ffb55b 4.95%, #ffe05c);
+}
+
+.highlight-color {
+	background-color: linear-gradient(270deg, #ffb55b 4.95%, #ffe05c);
+}
+.color {
+	color: #ffe05c;
+}
+
+/* pricing box  */
+.pricing-content.featured h2,.pricing-content.featured .price-bottom {
+	background-color:#0f7c7b;
+}
+.pricing-content.featured h3 {
+	background:linear-gradient(270deg, #ffb55b 4.95%, #ffe05c);
+}
+
+
+
+/* team */
+.cbp-l-grid-team-name {
+    color: #0f7c7b;
+}
+
+.cbp-l-filters-button .cbp-filter-counter {
+	background-color: linear-gradient(270deg, #ffb55b 4.95%, #ffe05c);
+}
+
+.cbp-l-filters-alignLeft .cbp-filter-item-active {
+    /* @editable properties */
+    background-color: linear-gradient(270deg, #ffb55b 4.95%, #ffe05c);
+    border:1px solid linear-gradient(270deg, #ffb55b 4.95%, #ffe05c);
+}
+
+.cbp-l-filters-dropdownWrap {
+    background: linear-gradient(270deg, #ffb55b 4.95%, #ffe05c);
+}
+.cbp-l-filters-button .cbp-filter-item.cbp-filter-item-active {
+    /* @editable properties */
+    background-color: linear-gradient(270deg, #ffb55b 4.95%, #ffe05c);
+    border-color: linear-gradient(270deg, #ffb55b 4.95%, #ffe05c);
+}
+.cbp-l-caption-buttonLeft,
+.cbp-l-caption-buttonRight {
+    /* @editable properties */
+    background-color: linear-gradient(270deg, #ffb55b 4.95%, #ffe05c);
+}
+
+.cbp-l-caption-buttonLeft:hover,
+.cbp-l-caption-buttonRight:hover {
+    /* @editable properties */
+    background-color: #0f7c7b;
+}
+
+.form-control:focus {
+  border-color: #0f7c7b;
+}
