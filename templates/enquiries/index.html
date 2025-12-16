@@ -104,9 +104,10 @@
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
           <i class="fa fa-bars"></i>
         </button>
-        <a class="navbar-brand" href="{% static 'index.html' %}" style="padding-top:0px;">
-          <img src="{% static 'img/logo.jpeg' %}" alt="" width="120%" height="120%" />
-        </a>
+<a class="navbar-brand" href="{% url 'index' %}" style="padding-top:0px;">
+    <img src="{% static 'img/logo.jpeg' %}" alt="" width="160" height="66">
+</a>
+
       </div>
 
       <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
@@ -119,7 +120,7 @@
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="badge custom-badge red pull-right">Will Get</span>Jeweller's<b class="caret"></b></a>
             <ul class="dropdown-menu">
-              <li><a href="{% static 'index.html' %}">Mobile App</a></li>
+              <li><a href="{% url 'index' %}">Mobile App</a></li>
               <li><a href="#documents">Drafted Agreements & Policies</a></li>
               <li><a href="#partner">Marketing Banners</a></li>
             </ul>
@@ -499,23 +500,62 @@
 				</h4>
 				</div>
                 
-                <div class="col-sm-12 col-md-12 col-lg-12" >
-					<div class="wow bounceInUp" data-wow-delay="0.2s">
-                    <div id="owl-works" class="owl-carousel">
-                        <div class="item"><a href="{% static 'docs/Terms n Conditions.pdf' %}" title="Terms And Conditions" data-lightbox-gallery="gallery1" data-lightbox-hidpi="img/works/1@2x.jpg"><img src="{% static 'img/photo/terms-and-conditions.png' %}" class="img-responsive" alt="img"> <h6>Terms and Conditions</h6></a></div>
+<div class="col-sm-12 col-md-12 col-lg-12">
+  <div class="wow bounceInUp" data-wow-delay="0.2s">
+    <div id="owl-works" class="owl-carousel">
 
-                        <div class="item"><a href="{% static 'docs/Privacy Policy.pdf' %}" title="Privacy Policy" data-lightbox-gallery="gallery1" data-lightbox-hidpi="img/works/2@2x.jpg"><img src="{% static 'img/photo/compliant.png' %}" class="img-responsive " alt="img"><h6>Privacy Policy</h6></a></div>
+      <div class="item">
+        <a href="{% static 'docs/terms-and-conditions.pdf' %}"
+           target="_blank" rel="noopener">
+          <img src="{% static 'img/photo/terms-and-conditions.png' %}" class="img-responsive" alt="">
+          <h6>Terms and Conditions</h6>
+        </a>
+      </div>
 
-                        <div class="item"><a href="{% static 'docs/Refund n Cancellation Policy.pdf' %}" title="Refund And Cancellations" data-lightbox-gallery="gallery1" data-lightbox-hidpi="img/works/3@2x.jpg"><img src="{% static 'img/photo/refund.png' %}" class="img-responsive " alt="img"><h6>Refund And Cancellations</h6></a></div>
+      <div class="item">
+        <a href="{% static 'docs/privacy-policy.pdf' %}"
+           target="_blank" rel="noopener">
+          <img src="{% static 'img/photo/compliant.png' %}" class="img-responsive" alt="">
+          <h6>Privacy Policy</h6>
+        </a>
+      </div>
 
-                        <div class="item"><a href="{% static 'docs/Risk Disclaimer Notice.pdf' %}" title="Risk Disclaimer" data-lightbox-gallery="gallery1" data-lightbox-hidpi="img/works/4@2x.jpg"><img src="{% static 'img/photo/warning.png' %}" class="img-responsive " alt="img"><h6>Risk Disclaimer</h6></a></div>
+      <div class="item">
+        <a href="{% static 'docs/refund-and-cancellation-policy.pdf' %}"
+           target="_blank" rel="noopener">
+          <img src="{% static 'img/photo/refund.png' %}" class="img-responsive" alt="">
+          <h6>Refund And Cancellations</h6>
+        </a>
+      </div>
 
-                        <div class="item"><a href="{% static 'docs/Customer Declaration n Consent.pdf' %}" title="Customer Consent" data-lightbox-gallery="gallery1" data-lightbox-hidpi="img/works/5@2x.jpg"><img src="{% static 'img/photo/donor-consent-form.png' %}" class="img-responsive " alt="img"><h6>Customer Consent</h6></a></div>
+      <div class="item">
+        <a href="{% static 'docs/risk-disclaimer-notice.pdf' %}"
+           target="_blank" rel="noopener">
+          <img src="{% static 'img/photo/warning.png' %}" class="img-responsive" alt="">
+          <h6>Risk Disclaimer</h6>
+        </a>
+      </div>
 
-                        <div class="item"><a href="{% static 'docs/FAQ.pdf' %}" title="Frequently Asked Questions" data-lightbox-gallery="gallery1" data-lightbox-hidpi="img/works/6@2x.jpg"><img src="{% static 'img/photo/faq.png' %}" class="img-responsive " alt="img"><h6>FAQs</h6></a></div>
-                    </div>
-					</div>
-                </div>
+      <div class="item">
+        <a href="{% static 'docs/customer-declaration-and-consent.pdf' %}"
+           target="_blank" rel="noopener">
+          <img src="{% static 'img/photo/donor-consent-form.png' %}" class="img-responsive" alt="">
+          <h6>Customer Consent</h6>
+        </a>
+      </div>
+
+      <div class="item">
+        <a href="{% static 'docs/faq.pdf' %}"
+           target="_blank" rel="noopener">
+          <img src="{% static 'img/photo/faq.png' %}" class="img-responsive" alt="">
+          <h6>FAQs</h6>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</div>
+
             </div>
 		</div>
 	</section>
@@ -801,75 +841,88 @@
                 <div data-filter=".neurologist" class="cbp-filter-item">Neurologist (<div class="cbp-filter-counter"></div>)</div>
             </div> -->
 		
-            <div id="grid-container" class="cbp-l-grid-team">
-                <ul>
-                    <li class="cbp-item psychiatrist">
-                        <a href="{% static 'team/member1.html' %}" class="cbp-caption cbp-singlePage">
-                            <div class="cbp-caption-defaultWrap">
-                                <img src="{% static 'img/team/1.jpg' %}" alt="" width="100%">
-                            </div>
-                            <div class="cbp-caption-activeWrap">
-                                <div class="cbp-l-caption-alignCenter">
-                                    <div class="cbp-l-caption-body">
-                                        <div class="cbp-l-caption-text">VIEW PROFILE</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="{% static 'team/member1.html' %}" class="cbp-singlePage cbp-l-grid-team-name">Mr. Mahendra Luniya</a>
-                        <div class="cbp-l-grid-team-position">Director</div>
-                    </li>
-                    <li class="cbp-item cardiologist">
-                        <a href="{% static 'team/member2.html' %}" class="cbp-caption cbp-singlePage">
-                            <div class="cbp-caption-defaultWrap">
-                                <img src="{% static 'img/team/2.jpg' %}" alt="" width="100%">
-                            </div>
-                            <div class="cbp-caption-activeWrap">
-                                <div class="cbp-l-caption-alignCenter">
-                                    <div class="cbp-l-caption-body">
-                                        <div class="cbp-l-caption-text">VIEW PROFILE</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="{% static 'team/member2.html' %}" class="cbp-singlePage cbp-l-grid-team-name">Mrs. Shardha Luniya</a>
-                        <div class="cbp-l-grid-team-position">Director</div>
-                    </li>
-                    <li class="cbp-item cardiologist">
-                        <a href="{% static 'team/member3.html' %}" class="cbp-caption cbp-singlePage">
-                            <div class="cbp-caption-defaultWrap">
-                                <img src="{% static 'img/team/3.jpg' %}" alt="" width="100%">
-                            </div>
-                            <div class="cbp-caption-activeWrap">
-                                <div class="cbp-l-caption-alignCenter">
-                                    <div class="cbp-l-caption-body">
-                                        <div class="cbp-l-caption-text">VIEW PROFILE</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="{% static 'team/member3.html' %}" class="cbp-singlePage cbp-l-grid-team-name">Mr. Ranjan Paradkar</a>
-                        <div class="cbp-l-grid-team-position">Executive Director</div>
-                    </li>
-                    <li class="cbp-item neurologist">
-                        <a href="{% static 'team/member4.html' %}" class="cbp-caption cbp-singlePage">
-                            <div class="cbp-caption-defaultWrap">
-                                <img src="{% static 'img/team/4.jpg' %}" alt="" width="100%">
-                            </div>
-                            <div class="cbp-caption-activeWrap">
-                                <div class="cbp-l-caption-alignCenter">
-                                    <div class="cbp-l-caption-body">
-                                        <div class="cbp-l-caption-text">VIEW PROFILE</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="{% static 'team/member4.html' %}" class="cbp-singlePage cbp-l-grid-team-name">Mr. Sunil Limje</a>
-                        <div class="cbp-l-grid-team-position">IT Director</div>
-                    </li>
+<div id="grid-container" class="cbp-l-grid-team">
+    <ul>
 
-                </ul>
-            </div>
+        <li class="cbp-item psychiatrist">
+            <a href="{% url 'member1' %}" class="cbp-caption cbp-singlePage">
+                <div class="cbp-caption-defaultWrap">
+                    <img src="{% static 'img/team/1.jpg' %}" alt="" width="100%">
+                </div>
+                <div class="cbp-caption-activeWrap">
+                    <div class="cbp-l-caption-alignCenter">
+                        <div class="cbp-l-caption-body">
+                            <div class="cbp-l-caption-text">VIEW PROFILE</div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="{% url 'member1' %}" class="cbp-singlePage cbp-l-grid-team-name">
+                Mr. Mahendra Luniya
+            </a>
+            <div class="cbp-l-grid-team-position">Director</div>
+        </li>
+
+        <li class="cbp-item cardiologist">
+            <a href="{% url 'member2' %}" class="cbp-caption cbp-singlePage">
+                <div class="cbp-caption-defaultWrap">
+                    <img src="{% static 'img/team/2.jpg' %}" alt="" width="100%">
+                </div>
+                <div class="cbp-caption-activeWrap">
+                    <div class="cbp-l-caption-alignCenter">
+                        <div class="cbp-l-caption-body">
+                            <div class="cbp-l-caption-text">VIEW PROFILE</div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="{% url 'member2' %}" class="cbp-singlePage cbp-l-grid-team-name">
+                Mrs. Shardha Luniya
+            </a>
+            <div class="cbp-l-grid-team-position">Director</div>
+        </li>
+
+        <li class="cbp-item cardiologist">
+            <a href="{% url 'member3' %}" class="cbp-caption cbp-singlePage">
+                <div class="cbp-caption-defaultWrap">
+                    <img src="{% static 'img/team/3.jpg' %}" alt="" width="100%">
+                </div>
+                <div class="cbp-caption-activeWrap">
+                    <div class="cbp-l-caption-alignCenter">
+                        <div class="cbp-l-caption-body">
+                            <div class="cbp-l-caption-text">VIEW PROFILE</div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="{% url 'member3' %}" class="cbp-singlePage cbp-l-grid-team-name">
+                Mr. Ranjan Paradkar
+            </a>
+            <div class="cbp-l-grid-team-position">Executive Director</div>
+        </li>
+
+        <li class="cbp-item neurologist">
+            <a href="{% url 'member4' %}" class="cbp-caption cbp-singlePage">
+                <div class="cbp-caption-defaultWrap">
+                    <img src="{% static 'img/team/4.jpg' %}" alt="" width="100%">
+                </div>
+                <div class="cbp-caption-activeWrap">
+                    <div class="cbp-l-caption-alignCenter">
+                        <div class="cbp-l-caption-body">
+                            <div class="cbp-l-caption-text">VIEW PROFILE</div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="{% url 'member4' %}" class="cbp-singlePage cbp-l-grid-team-name">
+                Mr. Sunil Limje
+            </a>
+            <div class="cbp-l-grid-team-position">IT Director</div>
+        </li>
+
+    </ul>
+</div>
+
 			</div>
 			</div>
 		</div>
@@ -878,13 +931,28 @@
 
   <footer>
     <div class="container">
-      <div class="row">
-        <div class="col-sm-6 col-md-4">
-          <div class="widget">
-            <h5>About Gold Vault</h5>
-            <p>Empowering Jewellers with Digital Gold.<br/> Simple. Secure. Profitable.</p>
-          </div>
-        </div>
+			<div class="row">
+				<div class="col-sm-6 col-md-4">
+					<div class="wow fadeInDown" data-wow-delay="0.1s">
+					<div class="widget">
+						<h5>About Gold Vault</h5>
+						<p>
+						Empowering Jewellers with Digital Gold.<br/> Simple. Secure. Profitable.
+						</p>
+					</div>
+					</div>
+					<div class="wow fadeInDown" data-wow-delay="0.1s">
+					<div class="widget">
+						<h5>Information</h5>
+						<ul>
+							<li class="active"><a href="#intro">Home</a></li>
+							<li><a href="#features">Features</a></li>
+							<li><a href="#facilities">Services</a></li>
+							<li><a href="#team">Team</a></li>
+						</ul>
+					</div>
+					</div>
+				</div>
         <div class="col-sm-4 col-md-4">
           <div class="widget">
             <h5>Get In Touch</h5>
@@ -901,6 +969,8 @@
             <h5>Jeweller's Agreement</h5>
             <ul class="company-social">
               <li class="social-facebook"><a href="{% static 'docs/Developer Agreement.pdf' %}"><i class="fa fa-file"></i><h6>Development Agreement</h6></a></li>
+              							<li class="social-twitter"><a href="{% static 'docs/ANNEXURE – SLA.pd' %}f"><i class="fa fa-lock"></i><h6>Service Agreement</h6></a></li>
+							<li class="social-google"><a href="{% static 'docs/ANNEXURE – DPA.pdf' %}"><i class="fa fa-shield"></i><h6>Data Protection Agreement</h6></a>
             </ul>
           </div>
         </div>
@@ -922,259 +992,286 @@
 <!-- Core JS (keep these in this order; modal script will be inserted after bootstrap) -->
 <script src="{% static 'js/jquery.min.js' %}"></script>
 <script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script>
+/* Auto-close mobile navbar on link click (Bootstrap 3) */
+(function () {
+  var nav = document.querySelector('.navbar-main-collapse');
+  if (!nav) return;
+
+  // Close menu when clicking any normal nav link
+  nav.addEventListener('click', function (e) {
+    var target = e.target;
+
+    // Only react to anchor clicks
+    if (target.tagName !== 'A') return;
+
+    // Ignore dropdown toggles
+    if (target.classList.contains('dropdown-toggle')) return;
+
+    // If menu is open, close it
+    if (nav.classList.contains('in')) {
+      $('.navbar-main-collapse').collapse('hide');
+    }
+  });
+})();
+</script>
 
 <!-- Modal + form submit logic (placed after bootstrap so bootstrap.Modal will be present) -->
 <script>
-(function(){
-  // small debug no-op
-  function dbg(){ /* no-op debug placeholder */ }
+(function () {
 
-  // cleanup stray backdrops and restore scroll
-  function cleanupBackdrop() {
-    try {
-      document.querySelectorAll('.modal-backdrop').forEach(el => el.remove());
-      document.getElementById('fv-fallback-modal')?.remove();
-      document.getElementById('fv-fallback-overlay')?.remove();
-      document.body.style.overflow = 'auto';
-    } catch(e){ dbg('cleanupBackdrop', e); }
-  }
-
-  // create fallback modal (only one implementation)
-  function createFallbackModal() {
-    if (document.getElementById('fv-fallback-modal')) return;
-    const html = `
-      <div id="fv-fallback-overlay" style="position:fixed; inset:0; background:rgba(0,0,0,0.45); z-index:1999;"></div>
-      <div id="fv-fallback-modal" role="dialog" aria-modal="true" style="position:fixed; z-index:2000; left:50%; top:25%; transform:translate(-50%,0); max-width:520px; width:90%; padding:0; border-radius:12px; overflow:hidden;">
-        <div id="fv-fallback-header" style="padding:14px 16px; display:flex; align-items:center; gap:12px;">
-          <div id="fv-fallback-icon" aria-hidden="true" style="width:56px;height:56px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"></div>
-          <div style="flex:1"><div id="fv-fallback-title" style="font-weight:700;color:#fff;font-size:1rem">Response</div></div>
-          <button id="fv-fallback-close" aria-label="Close" style="background:transparent;border:0;color:rgba(255,255,255,0.95);font-size:22px;cursor:pointer;">&times;</button>
-        </div>
-        <div id="fv-fallback-body" style="padding:18px; background:var(--fv-muted, #fbf8f0); color:var(--fv-dark, #1b1b1b); white-space:pre-wrap;"></div>
-        <div id="fv-fallback-footer" style="padding:10px 14px; background:#fff; text-align:right;">
-          <button id="fv-fallback-ok" class="btn btn-skin">Close</button>
-        </div>
-      </div>
-    `;
-    const container = document.createElement('div');
-    container.innerHTML = html;
-    document.body.appendChild(container);
-
-    const closeEls = [
-      document.getElementById('fv-fallback-close'),
-      document.getElementById('fv-fallback-ok'),
-      document.getElementById('fv-fallback-overlay')
-    ];
-    closeEls.forEach(el => {
-      if (!el) return;
-      el.addEventListener('click', function(){
-        document.getElementById('fv-fallback-modal')?.remove();
-        document.getElementById('fv-fallback-overlay')?.remove();
-        cleanupBackdrop();
-      });
-    });
-  }
-
-  // apply header gradient & inject appropriate icon
-  function applyHeaderAndIcon(iconEl, headerEl, type) {
-    const colors = {
-      primary: ['#b8860b','#d4a81a'],
-      success: ['#2a9d8f','#36b79b'],
-      error:   ['#d64545','#ef7b7b']
-    };
-    const c = colors[type] || colors.primary;
-    if (headerEl) headerEl.style.background = `linear-gradient(90deg, ${c[0]}, ${c[1]})`;
-    if (iconEl) {
-      iconEl.innerHTML = '';
-      if (type === 'success') {
-        iconEl.innerHTML = `<svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="rgba(255,255,255,0.08)"></circle><path id="fvTick" class="fv-tick" d="M7 13.5l2.5 2.5L17 8.5" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>`;
-      } else if (type === 'error') {
-        iconEl.innerHTML = `<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="#fff" d="M12 10.586l4.95-4.95 1.414 1.414L13.414 12l4.95 4.95-1.414 1.414L12 13.414l-4.95 4.95-1.414-1.414L10.586 12 5.636 7.05 7.05 5.636z"/></svg>`;
-      } else {
-        iconEl.innerHTML = `<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="#fff" d="M11 9h2v6h-2V9zm0-4h2v2h-2V5z"/></svg>`;
-      }
-    }
-  }
-
-  // animate tick path stroke
-  function animateFallbackTick(iconEl) {
-    try {
-      const tick = iconEl && iconEl.querySelector('.fv-tick');
-      if (!tick) return;
-      const len = tick.getTotalLength ? tick.getTotalLength() : 1000;
-      tick.style.strokeDasharray = len;
-      tick.style.strokeDashoffset = len;
-      setTimeout(()=> { tick.style.transition = 'stroke-dashoffset 450ms ease-out'; tick.style.strokeDashoffset = '0'; }, 40);
-    } catch(e){ dbg('tick animate err', e); }
-  }
-
-  // showModal(text, type='primary', autoCloseMs=0)
-  window.showModal = function(text, type='primary', autoCloseMs=0) {
-    dbg('showModal', type);
-    cleanupBackdrop();
-
-    // set into bootstrap modal body if exists
-    const bsBody = document.getElementById('respModalBody');
-    if (bsBody) bsBody.textContent = text;
-
-    // If bootstrap Modal exists and respModal markup present, prefer it
-    const modalEl = document.getElementById('respModal');
-    if (window.bootstrap && typeof bootstrap.Modal === 'function' && modalEl) {
-      try {
-        modalEl.classList.remove('fv-primary','fv-success','fv-error');
-        modalEl.classList.add(type === 'success' ? 'fv-success' : (type === 'error' ? 'fv-error' : 'fv-primary'));
-        // optionally adjust header/icon if identifiers exist inside respModal
-        const respIcon = document.getElementById('respModalIcon');
-        const respHeader = modalEl.querySelector('.fv-header');
-        if (respIcon || respHeader) applyHeaderAndIcon(respIcon || document.createElement('div'), respHeader || modalEl, type);
-
-        const modal = new bootstrap.Modal(modalEl, {backdrop:'static'});
-        modal.show();
-
-        if (autoCloseMs && type === 'success') {
-          setTimeout(()=> {
-            try { modal.hide(); } catch(e){}
-          }, autoCloseMs);
-        }
-        return;
-      } catch(e){
-        dbg('bootstrap modal use failed', e);
-      }
-    }
-
-    // Fallback
-    createFallbackModal();
-    const bodyEl = document.getElementById('fv-fallback-body');
-    const iconEl = document.getElementById('fv-fallback-icon');
-    const headerEl = document.getElementById('fv-fallback-header');
-    const titleEl = document.getElementById('fv-fallback-title');
-    if (bodyEl) bodyEl.textContent = text;
-    if (titleEl) titleEl.textContent = (type === 'success' ? 'Success' : (type === 'error' ? 'Error' : 'Response'));
-    applyHeaderAndIcon(iconEl, headerEl, type);
-
-    if (type === 'success') animateFallbackTick(iconEl);
-
-    // prevent body scroll behind modal
-    document.body.style.overflow = 'hidden';
-
-    // auto close on success if requested
-    if (autoCloseMs && type === 'success') {
-      setTimeout(()=> {
-        document.getElementById('fv-fallback-modal')?.remove();
-        document.getElementById('fv-fallback-overlay')?.remove();
-        cleanupBackdrop();
-      }, autoCloseMs);
-    }
-  };
-
-  // ---- Form submission handlers ----
+  /* ===============================
+     BASIC SETUP & SAFETY
+  ================================ */
   const form = document.querySelector('form');
-  if (!form) { dbg('no form found'); return; }
+  if (!form) return;
 
-  // supports input[type=submit] and button[type=submit]
+  // prevent double binding
+  if (form.dataset.submitBound === '1') return;
+  form.dataset.submitBound = '1';
+
   const submitBtn = form.querySelector('input[type="submit"], button[type="submit"]');
+  let isSubmitting = false;
 
-  function setBtnSending(btn){
-    if(!btn) return;
+  function dbg(){}
+
+  /* ===============================
+     CSRF HELPER
+  ================================ */
+  function getCookie(name) {
+    const m = document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)');
+    return m ? m.pop() : '';
+  }
+  const csrftoken = getCookie('csrftoken');
+
+  /* ===============================
+     BUTTON STATE
+  ================================ */
+  function setBtnSending(btn) {
+    if (!btn) return;
     btn.disabled = true;
     const tag = btn.tagName;
-    const current = (tag === 'INPUT') ? btn.value : (btn.innerText || btn.textContent);
-    btn.dataset.orig = current;
+    btn.dataset.orig = tag === 'INPUT' ? btn.value : btn.innerText;
     if (tag === 'INPUT') btn.value = 'Sending...';
     else btn.innerText = 'Sending...';
   }
-  function restoreBtn(btn){
-    if(!btn) return;
+
+  function restoreBtn(btn) {
+    if (!btn) return;
     btn.disabled = false;
     const tag = btn.tagName;
-    const orig = btn.dataset.orig || (tag === 'INPUT' ? 'Submit' : 'Submit');
+    const orig = btn.dataset.orig || 'Submit';
     if (tag === 'INPUT') btn.value = orig;
     else btn.innerText = orig;
   }
 
-  form.addEventListener('submit', function(e) {
+  /* ===============================
+     CLEANUP BACKDROP
+  ================================ */
+  function cleanupBackdrop() {
+    document.querySelectorAll('.modal-backdrop').forEach(el => el.remove());
+    document.getElementById('fv-fallback-modal')?.remove();
+    document.getElementById('fv-fallback-overlay')?.remove();
+    document.body.style.overflow = 'auto';
+  }
+
+  /* ===============================
+     CLEAR PHONE VALIDATION (🔥 FIX)
+  ================================ */
+  function clearPhoneValidation() {
+    const phone = document.getElementById('phone');
+    if (!phone) return;
+
+    phone.classList.remove('fv-invalid-input', 'fv-valid-input');
+
+    const msgEl = phone.nextElementSibling;
+    if (msgEl && msgEl.classList) {
+      msgEl.textContent = '';
+      msgEl.className = '';
+    }
+
+    if (submitBtn) submitBtn.disabled = false;
+  }
+
+  /* ===============================
+     MODAL HANDLER
+  ================================ */
+window.showModal = function (text, type = 'primary', autoCloseMs = 0) {
+
+  // Remove any existing modal
+  document.getElementById('fv-fallback-overlay')?.remove();
+  document.getElementById('fv-fallback-modal')?.remove();
+
+  // Create overlay
+  const overlay = document.createElement('div');
+  overlay.id = 'fv-fallback-overlay';
+  overlay.style.cssText = `
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.45);
+    z-index: 9998;
+  `;
+
+  // Create modal
+  const modal = document.createElement('div');
+  modal.id = 'fv-fallback-modal';
+  modal.style.cssText = `
+    position: fixed;
+    z-index: 9999;
+    left: 50%;
+    top: 20%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 520px;
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+    font-family: inherit;
+  `;
+
+  // Header
+  const header = document.createElement('div');
+  header.style.cssText = `
+    padding: 14px 16px;
+    font-weight: 700;
+    color: #fff;
+  `;
+
+  if (type === 'success') {
+    header.style.background = 'linear-gradient(90deg,#2a9d8f,#36b79b)';
+    header.textContent = 'Success';
+  } else if (type === 'error') {
+    header.style.background = 'linear-gradient(90deg,#d64545,#ef7b7b)';
+    header.textContent = 'Error';
+  } else {
+    header.style.background = 'linear-gradient(90deg,#b8860b,#d4a81a)';
+    header.textContent = 'Response';
+  }
+
+  // Body
+  const body = document.createElement('div');
+  body.style.cssText = `
+    padding: 18px;
+    background: #fbf8f0;
+    color: #1b1b1b;
+    white-space: pre-wrap;
+    font-size: 1rem;
+    line-height: 1.5;
+  `;
+  body.textContent = text;
+
+  // Footer
+  const footer = document.createElement('div');
+  footer.style.cssText = `
+    padding: 10px 14px;
+    background: #fff;
+    text-align: right;
+  `;
+
+  const btn = document.createElement('button');
+  btn.textContent = 'Close';
+  btn.className = 'btn btn-skin';
+  btn.onclick = closeModal;
+
+  footer.appendChild(btn);
+  modal.appendChild(header);
+  modal.appendChild(body);
+  modal.appendChild(footer);
+
+  document.body.appendChild(overlay);
+  document.body.appendChild(modal);
+  document.body.style.overflow = 'hidden';
+
+  overlay.onclick = closeModal;
+
+  function closeModal() {
+    overlay.remove();
+    modal.remove();
+    document.body.style.overflow = 'auto';
+  }
+
+  if (autoCloseMs && type === 'success') {
+    setTimeout(closeModal, autoCloseMs);
+  }
+};
+
+
+
+  /* ===============================
+     SUBMIT HANDLER (CAPTURE PHASE)
+  ================================ */
+  async function handleSubmit(e) {
     e.preventDefault();
+    e.stopImmediatePropagation();
+
+    if (isSubmitting) return;
+    isSubmitting = true;
 
     setBtnSending(submitBtn);
 
-    const csrftoken = (function getCookie(name){
-      const v = document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)');
-      return v ? v.pop() : '';
-    })('csrftoken');
-
     const formData = new FormData(form);
     const controller = new AbortController();
-    const timeoutMs = 12000;
-    const timeoutId = setTimeout(() => {
-      controller.abort();
-    }, timeoutMs);
+    const timeoutId = setTimeout(() => controller.abort(), 12000);
 
-    fetch(window.location.pathname, {
-      method: 'POST',
-      headers: {
-        'X-Requested-With': 'XMLHttpRequest',
-        'X-CSRFToken': csrftoken
-      },
-      body: formData,
-      credentials: 'same-origin',
-      signal: controller.signal
-    })
-    .then(async (resp) => {
+    try {
+      const resp = await fetch(window.location.pathname, {
+        method: 'POST',
+        headers: {
+          'X-Requested-With': 'XMLHttpRequest',
+          'X-CSRFToken': csrftoken
+        },
+        body: formData,
+        credentials: 'same-origin',
+        signal: controller.signal
+      });
+
       clearTimeout(timeoutId);
       restoreBtn(submitBtn);
 
-      // if not OK
-      if (!resp.ok) {
-        let message = `Request failed (status ${resp.status})`;
-        try {
-          const j = await resp.json();
-          if (j && j.errors) {
-            message = Object.entries(j.errors).map(([k,v]) => `${k}: ${v.join ? v.join(', ') : v}`).join('\n');
-          } else if (j && j.message_text) {
-            message = j.message_text;
-          } else {
-            message = JSON.stringify(j);
-          }
-        } catch(err) {
-          const txt = await resp.text().catch(()=>null);
-          message = txt || message;
-        }
-        showModal(message, 'error');
+      let data = {};
+      try { data = await resp.json(); } catch(e) {}
+
+      if (!resp.ok || data.message_code === 999) {
+        showModal(
+          data.message_text || 'Submission failed. Please try again.',
+          'error'
+        );
         return;
       }
 
-      // OK: parse JSON and show success
-      try {
-        const j = await resp.json();
-        const msg = (j && j.message_text) ? j.message_text : (typeof j === 'string' ? j : JSON.stringify(j));
-        // show success with green header + tick and auto-close
-        showModal(msg, 'success', 5000);
-        form.reset();
-      } catch(parseErr) {
-        const txt = await resp.text().catch(()=>String(parseErr));
-        showModal(txt || 'Success', 'primary');
-        form.reset();
-      }
-    })
-    .catch((err) => {
+      /* ✅ SUCCESS */
+      showModal(data.message_text || 'Submitted successfully', 'success', 5000);
+      form.reset();
+      clearPhoneValidation();   // 🔥 FIX APPLIED
+
+    } catch (err) {
       clearTimeout(timeoutId);
       restoreBtn(submitBtn);
-      if (err.name === 'AbortError') {
-        showModal('Request timed out (12s). The external service may be slow. Please try again.', 'error');
-      } else {
-        showModal('Failed to submit enquiry. Error: ' + (err && err.message ? err.message : String(err)), 'error');
-      }
-      cleanupBackdrop();
-    });
-  });
 
-  // expose test helper
-  window.fv_debug_test_modal = function(text){
-    showModal(text || 'test', 'primary', 1500);
-  };
+      if (err.name === 'AbortError') {
+        showModal('Request timed out. Please try again.', 'error');
+      } else {
+        showModal('Submission failed. ' + err.message, 'error');
+      }
+    } finally {
+      isSubmitting = false;
+    }
+  }
+
+  /* ===============================
+     ATTACH SUBMIT (CAPTURE MODE)
+  ================================ */
+  try {
+    form.removeEventListener('submit', handleSubmit, { capture: true });
+  } catch (e) {}
+
+  form.addEventListener('submit', handleSubmit, { capture: true });
 
 })();
 </script>
+
+
 
 <!-- rest of your page scripts -->
 <script src="{% static 'js/jquery.easing.min.js' %}"></script>
@@ -1273,3 +1370,4 @@
 
 </body>
 </html>
+     

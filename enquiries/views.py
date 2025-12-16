@@ -270,3 +270,16 @@ def enquiry_delete(request, pk=None):
 
     messages.error(request, "No ID provided to delete.")
     return redirect("enquiry_list")
+
+
+def member1(request):
+    return render(request, 'team/member1.html')
+
+def member2(request):
+    return render(request, 'team/member2.html')
+
+def member3(request):
+    return render(request, 'team/member3.html')
+
+def member4(request):
+    return render(request, 'team/member4.html')
